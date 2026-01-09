@@ -5,6 +5,10 @@ import 'dart:convert';
 void main() {
   runApp(const MyApp());
 }
+const String apiBaseUrl = String.fromEnvironment(
+  'API_BASE_URL',
+  defaultValue: 'http://127.0.0.1:8000',
+);
 
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
@@ -172,7 +176,7 @@ class _TranslatePageState extends State<TranslatePage> {
 
                       try {
                         final response = await http.post(
-                          Uri.parse('http://192.168.1.31:8000/translate'),
+                          Uri.parse('$apiBaseUrl/translate'),
                           headers: {'Content-Type': 'application/json'},
                           body: jsonEncode({
                             'text': _controller.text,
